@@ -4,7 +4,13 @@ void main() => runApp(MaterialApp(
       home: NinjaIdCard(),
     ));
 
-class NinjaIdCard extends StatelessWidget {
+class NinjaIdCard extends StatefulWidget {
+  @override
+  _NinjaIdCardState createState() => _NinjaIdCardState();
+}
+
+class _NinjaIdCardState extends State<NinjaIdCard> {
+  int counter = 0;
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -14,6 +20,16 @@ class NinjaIdCard extends StatelessWidget {
         centerTitle: true,
         elevation: 0.0,
         backgroundColor: Colors.grey[800],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          setState(() {
+            counter +=
+                1; //what it does it called the build function again then it change the state
+          });
+        },
+        child: Icon(Icons.add),
+        backgroundColor: Colors.yellow,
       ),
       body: Padding(
         padding: EdgeInsets.fromLTRB(30.0, 40.0, 30.0, 0.0),
@@ -64,7 +80,7 @@ class NinjaIdCard extends StatelessWidget {
               height: 20.0,
             ),
             Text(
-              "8",
+              '$counter',
               style: TextStyle(
                 color: Colors.amber,
                 letterSpacing: 2.0,
